@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="grid-wrapper">
-		<a href="/dist/img/278770.jpg" class="minImg">
+		<a href="/dist/img/278770.jpg" id="test" class="minImg">
 			<img src="/dist/img/278770.jpg" alt="">
 		</a>
 		<a href="/dist/img/343660.jpg" class="minImg">
@@ -37,16 +37,17 @@
 			<img src="/dist/img/WUi4uQ.jpg" alt="">
 		</a>
 	</div>
-	<div class="lightbox-wrapper active">
-		<div class="overlay"></div>
-		<div class="bigImg">
+	<div class="lightbox-wrapper">
+		<div class="bigImgWrapper">
 			<img class="loading" src="/dist/img/loading.gif" alt="">
-		</div>
-		<nav>
-			<span class="next">Вперед</span><span class="prev">Назад</span>
+			<nav>
+				<span class="next">Вперед</span><span class="prev">Назад</span>
+			</nav>
 			<span class="close">x</span>
-		</nav>
+		</div>
+		<div class="overlay"></div>
 	</div>
+	<script src="/dist/js/script.min.js"></script>
 	<script src="/dist/libs/libs.min.js"></script>
 </body>
 </html>
