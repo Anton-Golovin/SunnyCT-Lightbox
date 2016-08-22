@@ -10,15 +10,14 @@ window.onload = function(){
 	function openLigtbox(event) {
 		var $imgLink = $(this).attr("href");
 
-		$lightbox.show();
-		setTimeout(function(){$bigImgWrapper.addClass('active');}, 0);
+		$lightbox.fadeIn(500);
+		$bigImgWrapper.addClass('active');
 		event.preventDefault();
 	};
 
 	function closeLigtbox(event) {
-
+		$lightbox.fadeOut(500);
 		$bigImgWrapper.removeClass('active');
-		$lightbox.hide();
 		event.preventDefault();
 	};
 
