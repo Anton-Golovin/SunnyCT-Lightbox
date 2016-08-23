@@ -10,7 +10,21 @@ window.onload = function(){
 	$bigImg = $lightbox.find('img'),
 	$bigImgWrapper = $('.bigImgWrapper');
 
+
+	function showNav() {
+		if (linkIndex === 0) {
+			$('.prev').toggle();
+		} else if (linkIndex + 1 === $minImg.length) {
+			$('.next').toggle();
+		} else {
+			$('.prev').show();
+			$('.next').show();
+		}
+	}
+
 	function replaceImg(src) {
+		showNav();
+		$bigImg.removeClass('loading');
 		$bigImg.attr({ src: src });
 	}
 
@@ -18,7 +32,6 @@ window.onload = function(){
 		var $imgLink = $(this).attr("href");
 		window.linkIndex = $(this).index();
 
-		$bigImg.removeClass('loading');
 		replaceImg($imgLink);
 		event.preventDefault();
 		$lightbox.fadeIn(500);
@@ -37,8 +50,6 @@ window.onload = function(){
 
 			linkIndex++;
 			replaceImg($indexSrc);
-		} else {
-			console.log('this is last img');
 		}
 	};
 
@@ -49,17 +60,16 @@ window.onload = function(){
 
 			linkIndex--;
 			replaceImg($indexSrc);
-		} else {
-			console.log('this is first img');
 		}
 	};	
 
+	// open
 	for (var i = 0; i < linkName.length; i++) {
 		linkName[i].addEventListener('click', openLigtbox);
 	};
-
+	
+	//navigate 
 	closeName[0].addEventListener('click', closeLigtbox);
-
 	nextName[0].addEventListener('click', nextImg);
 	prevName[0].addEventListener('click', prevImg);
 }; 
