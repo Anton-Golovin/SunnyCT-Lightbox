@@ -13,9 +13,11 @@ window.onload = function(){
 
 	function showNav() {
 		if (linkIndex === 0) {
-			$('.prev').toggle();
+			$('.prev').hide();
+			$('.next').show();
 		} else if (linkIndex + 1 === $minImg.length) {
-			$('.next').toggle();
+			$('.next').hide();
+			$('.prev').show();
 		} else {
 			$('.prev').show();
 			$('.next').show();
