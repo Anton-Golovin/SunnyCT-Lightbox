@@ -17,10 +17,10 @@
 	height: 180px;
 }
 /***********************LightBox***********************/
-.lightbox-wrapper.active {
+.lightBox-wrapper.active {
 	display: block;
 }
-.lightbox-wrapper {
+.lightBox-wrapper {
 	position: absolute;
 	display: none;
 	left: 0;
@@ -38,14 +38,14 @@
 	height: 100%;   
 	background-color: rgba(241,210,194, .8); 
 }
-.bigImgWrapper {    
+.bigImg-wrapper {    
 	position: relative;
 	z-index: 2;
 	display: inline-block;
 	margin: 80px 20px;
 	min-width: 200px;
-	max-width: 1000px;
 	min-height: 200px;    
+	max-width: 1000px;
 	background: #fff;
 	box-shadow: 0px 0px 60px 1px rgba(0,0,0,0.56);
 	border: 5px #fff;
@@ -55,20 +55,24 @@
 	transform: scale(0.5);
 	transition: all 1s ease;
 }
-.bigImgWrapper.active {
+.bigImg-wrapper.active {
 	opacity: 1;
 	transform: scale(1);
 }
-.bigImgWrapper img {
+.bigImg-wrapper img {
 	display: block;
 	max-width: 100%;
 }
 /*elements*/
-img.loading {
+img.loadImg {
 	display: inline-block;
 	width: 20px;
 	height: auto;
-	padding-top: calc(50% - 10px);
+	padding-top: 50%;
+    margin-top: -10px;
+}
+.nav-wrapper {
+	display: none;
 }
 .close {
 	position: absolute;

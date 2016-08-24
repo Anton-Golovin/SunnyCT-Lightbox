@@ -6,12 +6,15 @@ window.onload = function(){
 	prevName = doc.getElementsByClassName("prev"),
 	nextName = doc.getElementsByClassName("next"),
 	$minImg = $('.minImg'),
-	$lightbox = $('.lightbox-wrapper'),
-	$bigImg = $lightbox.find('img'),
-	$bigImgWrapper = $('.bigImgWrapper');
+	$lightBoxWrapper = $('.lightBox-wrapper'),
+	$bigImgWrapper = $('.bigImg-wrapper'),
+	$navWrapper = $('.nav-wrapper'),
+	$bigImg = $lightBoxWrapper.find('img');
+
 
 
 	function showNav() {
+		$navWrapper.show();
 		if (linkIndex === 0) {
 			$('.prev').hide();
 			$('.next').show();
@@ -26,7 +29,7 @@ window.onload = function(){
 
 	function replaceImg(src) {
 		showNav();
-		$bigImg.removeClass('loading');
+		$bigImg.removeClass('loadImg');
 		$bigImg.attr({ src: src });
 	}
 
@@ -36,12 +39,12 @@ window.onload = function(){
 
 		replaceImg($imgLink);
 		event.preventDefault();
-		$lightbox.fadeIn(500);
+		$lightBoxWrapper.fadeIn(500);
 		$bigImgWrapper.addClass('active');
 	};
 
 	function closeLigtbox() {
-		$lightbox.fadeOut(500);
+		$lightBoxWrapper.fadeOut(500);
 		$bigImgWrapper.removeClass('active');
 	};
 
