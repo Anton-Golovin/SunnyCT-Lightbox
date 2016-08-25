@@ -3,6 +3,7 @@ window.onload = function(){
 	var doc = document,
 	linkName = doc.getElementsByClassName("minImg"),
 	closeName = doc.getElementsByClassName("close"),
+	overlayName = doc.getElementsByClassName("overlay"),
 	prevName = doc.getElementsByClassName("prev"),
 	nextName = doc.getElementsByClassName("next"),
 	$minImg = $('.minImg'),
@@ -27,35 +28,54 @@ window.onload = function(){
 			$('.next').show();
 		}
 	}
+
 	function changeSize() {
 		var	imgWidth = $('.bigImg').prop('naturalWidth'),
 		imgHeight = $('.bigImg').prop('naturalHeight'),
 		winWidth  = $(window).width(),
 		winHeight = $(window).height();
 
-		$bigImgWrapper.width(imgWidth).height(imgHeight);
+		$bigImgWrapper.width(imgWidth);
+		$bigImgWrapper.height(imgHeight);
 	};
 
-	function replaceImg(src) {
-		$bigImg.attr({ src: src });
+	function changeImg(src){
 		showNav();
-		changeSize();
-		$loadImg.hide();
-	}
+		$navWrapper.hide();
+		$bigImg.fadeOut(500);
+		setTimeout(function(){
+			$loadImg.show();
+			$bigImg.attr({ src: src });
+			changeSize();
+		}, 500);
+		setTimeout(function(){
+			$loadImg.hide();
+			$bigImg.fadeIn(500);
+		}, 1500);
+		setTimeout(function(){
+			$navWrapper.show();
+		}, 2000);
+	};
 
 	function openLigtbox(event) {
 		var $imgLink = $(this).attr("href");
 		window.linkIndex = $(this).index();
 
-		replaceImg($imgLink);
+		changeImg($imgLink);
 		event.preventDefault();
 		$lightBoxWrapper.fadeIn(500);
 		$bigImgWrapper.addClass('active');
 	};
 
 	function closeLigtbox() {
+		$bigImg.fadeOut(500);
 		$lightBoxWrapper.fadeOut(500);
 		$bigImgWrapper.removeClass('active');
+		setTimeout(function(){
+			$loadImg.show();
+			$bigImgWrapper.width(200);
+			$bigImgWrapper.height(200);
+		}, 500);
 	};
 
 	function nextImg() {
@@ -64,7 +84,7 @@ window.onload = function(){
 			$indexSrc = $findIndex.attr("href");
 
 			linkIndex++;
-			replaceImg($indexSrc);
+			changeImg($indexSrc);
 		}
 	};
 
@@ -74,7 +94,7 @@ window.onload = function(){
 			$indexSrc = $findIndex.attr("href");
 
 			linkIndex--;
-			replaceImg($indexSrc);
+			changeImg($indexSrc);
 		}
 	};	
 
@@ -85,6 +105,7 @@ window.onload = function(){
 	
 	//navigate 
 	closeName[0].addEventListener('click', closeLigtbox);
+	overlayName[0].addEventListener('click', closeLigtbox);
 	nextName[0].addEventListener('click', nextImg);
 	prevName[0].addEventListener('click', prevImg);
 }; 
