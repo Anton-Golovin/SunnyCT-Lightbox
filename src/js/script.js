@@ -9,7 +9,8 @@ window.onload = function(){
 	$lightBoxWrapper = $('.lightBox-wrapper'),
 	$bigImgWrapper = $('.bigImg-wrapper'),
 	$navWrapper = $('.nav-wrapper'),
-	$bigImg = $lightBoxWrapper.find('img');
+	$bigImg = $('.bigImg'),
+	$loadImg = $('.loadImg');
 
 
 
@@ -26,11 +27,20 @@ window.onload = function(){
 			$('.next').show();
 		}
 	}
+	function changeSize() {
+		var	imgWidth = $('.bigImg').prop('naturalWidth'),
+		imgHeight = $('.bigImg').prop('naturalHeight'),
+		winWidth  = $(window).width(),
+		winHeight = $(window).height();
+
+		$bigImgWrapper.width(imgWidth).height(imgHeight);
+	};
 
 	function replaceImg(src) {
-		showNav();
-		$bigImg.removeClass('loadImg');
 		$bigImg.attr({ src: src });
+		showNav();
+		changeSize();
+		$loadImg.hide();
 	}
 
 	function openLigtbox(event) {
