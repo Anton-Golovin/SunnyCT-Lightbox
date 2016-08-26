@@ -32,11 +32,24 @@ window.onload = function(){
 	function changeSize() {
 		var	imgWidth = $('.bigImg').prop('naturalWidth'),
 		imgHeight = $('.bigImg').prop('naturalHeight'),
-		winWidth  = $(window).width(),
-		winHeight = $(window).height();
+		maxWidth  = Math.floor($(window).width()*0.7),
+		maxHeight = Math.floor($(window).height()*0.7),
+		newWidth = Math.floor(imgWidth/(imgHeight/maxHeight)),
+		newHeight = Math.floor(imgHeight/(imgWidth/maxWidth)),
+		diffWidth = imgWidth - maxWidth,
+		diffHeight = imgHeight - maxHeight;
+		
+		if (diffHeight > 0 && diffHeight > diffWidth) {
+			$bigImgWrapper.width(newWidth);
+			$bigImgWrapper.height(maxHeight);
+		} else if (diffWidth > 0) {
+			$bigImgWrapper.width(maxWidth);
+			$bigImgWrapper.height(newHeight);
+		} else {
+			$bigImgWrapper.width(imgWidth);
+			$bigImgWrapper.height(imgHeight);
+		}
 
-		$bigImgWrapper.width(imgWidth);
-		$bigImgWrapper.height(imgHeight);
 	};
 
 	function changeImg(src){
