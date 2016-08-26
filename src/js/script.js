@@ -38,14 +38,23 @@ window.onload = function(){
 		newHeight = Math.floor(imgHeight/(imgWidth/maxWidth)),
 		diffWidth = imgWidth - maxWidth,
 		diffHeight = imgHeight - maxHeight;
-		
+
 		if (diffHeight > 0 && diffHeight > diffWidth) {
+			var marginTop = -(maxHeight/2)-10;
+
+			$bigImgWrapper.css({'margin-top' : marginTop})
 			$bigImgWrapper.width(newWidth);
 			$bigImgWrapper.height(maxHeight);
 		} else if (diffWidth > 0) {
+			var marginTop = -(newHeight/2)-10;
+
+			$bigImgWrapper.css({'margin-top' : marginTop})
 			$bigImgWrapper.width(maxWidth);
 			$bigImgWrapper.height(newHeight);
 		} else {
+			var marginTop = -(imgHeight/2)-10;
+
+			$bigImgWrapper.css({'margin-top' : marginTop})
 			$bigImgWrapper.width(imgWidth);
 			$bigImgWrapper.height(imgHeight);
 		}
