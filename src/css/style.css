@@ -66,9 +66,8 @@
 /*elements*/
 .loadImg {
 	position: relative;
-	background-image: url('../img/loading.gif');
-	background-repeat: no-repeat;
-	background-position: center;
+	background: url('../img/loading.gif') no-repeat center;
+	background-size: 20px;
 	width: 100%;
 	height: 100%;
 

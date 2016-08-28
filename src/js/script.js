@@ -61,22 +61,39 @@ window.onload = function(){
 
 	};
 
+
 	function changeImg(src){
-		showNav();
-		$navWrapper.hide();
-		$bigImg.fadeOut(500);
-		setTimeout(function(){
-			$loadImg.show();
-			$bigImg.attr({ src: src });
-			changeSize();
-		}, 500);
-		setTimeout(function(){
-			$loadImg.hide();
-			$bigImg.fadeIn(500);
-		}, 1500);
-		setTimeout(function(){
-			$navWrapper.show();
-		}, 2000);
+		var imgSRC = src,
+		img=new Image();
+		img.src=src;
+
+		$.ajax({
+			type: "POST",
+			url: imgSRC,
+			beforeSend: function(){
+				showNav();
+				$navWrapper.hide();
+				$bigImg.fadeOut(500);
+				setTimeout(function(){
+					$loadImg.show();
+					$bigImg.attr({ src: img.src });
+				}, 500);
+			},
+			success: function() {
+				setTimeout(function(){
+					changeSize();
+				}, 500);
+				setTimeout(function(){
+					$loadImg.hide();
+					$bigImg.fadeIn(500);
+				}, 1500);
+			},
+			complete:  function(){	
+				setTimeout(function(){
+					$navWrapper.show();
+				}, 2000);
+			}
+		});
 	};
 
 	function openLigtbox(event) {
@@ -100,22 +117,22 @@ window.onload = function(){
 		}, 500);
 	};
 
-	function nextImg() {
-		if ((linkIndex + 1) < $minImg.length) {
-			var $findIndex = $minImg.eq(linkIndex + 1),
-			$indexSrc = $findIndex.attr("href");
-
-			linkIndex++;
-			changeImg($indexSrc);
-		}
-	};
-
 	function prevImg() {
 		if (linkIndex > 0) {
 			var $findIndex = $minImg.eq(linkIndex - 1),
 			$indexSrc = $findIndex.attr("href");
 
 			linkIndex--;
+			changeImg($indexSrc);
+		}
+	};
+
+	function nextImg() {
+		if ((linkIndex + 1) < $minImg.length) {
+			var $findIndex = $minImg.eq(linkIndex + 1),
+			$indexSrc = $findIndex.attr("href");
+
+			linkIndex++;
 			changeImg($indexSrc);
 		}
 	};	
