@@ -1,4 +1,4 @@
-;(function(lightBox) {
+;(function lightbox() {
 	var doc = document,
 	linkName = doc.getElementsByClassName("minImg"),
 	closeName = doc.getElementsByClassName("close"),
@@ -15,7 +15,6 @@
 
 
 	function showNav() {
-		$navWrapper.show();
 		if (linkIndex === 0) {
 			$('.prev').hide();
 			$('.next').show();
@@ -25,8 +24,9 @@
 		} else {
 			$('.prev').show();
 			$('.next').show();
-		}
-	}
+		};
+		$navWrapper.show();
+	};
 
 	function changeSize() {
 		var	imgWidth = $('.bigImg').prop('naturalWidth'),
@@ -57,18 +57,13 @@
 			$bigImgWrapper.width(imgWidth);
 			$bigImgWrapper.height(imgHeight);
 		}
-
 	};
 
 
 	function changeImg(src){
-		var imgSRC = src,
-		img=new Image();
-		img.src=src;
-
 		$.ajax({
 			type: "POST",
-			url: imgSRC,
+			url: src,
 			beforeSend: function(){
 				showNav();
 				$navWrapper.hide();
@@ -77,7 +72,7 @@
 			},
 			success: function() {
 				setTimeout(function(){
-					$bigImg.attr({ src: img.src });
+					$bigImg.attr({ src: src });
 				}, 500);
 			},
 			complete: function(){	
