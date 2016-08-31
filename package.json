@@ -19,6 +19,7 @@
     "gulp-filter": "^4.0.0",
     "gulp-imagemin": "^3.0.1",
     "gulp-main-bower-files": "^1.5.2",
+    "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglifyjs": "^0.6.2",
     "imagemin-pngquant": "^5.0.0",

@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     filter = require('gulp-filter'),
     mergeStream = require('merge-stream'),
     concat = require('gulp-concat'),
+    plumber = require('gulp-plumber'),
     sourcemaps = require('gulp-sourcemaps');
 
 var path = {
@@ -90,6 +91,7 @@ gulp.task('bower', ['clear:libs'], function() {
         }))
         .pipe(filterJS)
         .pipe(concat('libs/libs.min.js'))
+
         .pipe(uglify()) //compression js
         .pipe(filterJS.restore)
         .pipe(filterCSS)
@@ -106,6 +108,7 @@ gulp.task('css:dist', ['clear:css'], function () {
         }))
     .pipe(concat('style.min.css'))
     .pipe(sourcemaps.init())
+    .pipe(plumber())
     .pipe(csso()) //compression css
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(path.dist.css))
@@ -115,6 +118,7 @@ gulp.task('js:dist', ['clear:js'], function () {
     return gulp.src(path.src.js)
     .pipe(concat('script.min.js'))
     .pipe(sourcemaps.init())
+    .pipe(plumber())
     .pipe(uglify()) //compression js
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(path.dist.js))
