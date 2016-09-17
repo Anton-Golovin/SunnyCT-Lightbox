@@ -70,12 +70,7 @@
 				$bigImg.fadeOut(500);
 				$loadImg.show();
 			},
-			success: function() {
-				setTimeout(function(){
-					$bigImg.attr({ src: src });
-				}, 500);
-			},
-			complete: function(){	
+			success: function() {	
 				setTimeout(function(){
 					changeSize();
 				}, 1500);
@@ -86,6 +81,26 @@
 				setTimeout(function(){
 					$navWrapper.show();
 				}, 3000);
+			},
+			complete: function(){
+				setTimeout(function(){
+					$bigImg.attr({ src: src });
+				}, 500);
+			},
+			error: function (x,e){
+				if (x.status==0) {
+					alert('The Web-server is not available! Please check your network.');
+				} else if(x.status==404) {
+					alert('Requested URL not found.');
+				} else if(x.status==500) {
+					alert('Internel Server Error.');
+				} else if(e=='parsererror') {
+					alert('Error. Parsing JSON Request failed.');
+				} else if(e=='timeout'){
+					alert('Request Time out.');
+				} else {
+					alert('Unknow Error.\n'+x.responseText);
+				}
 			}
 		});
 	};
